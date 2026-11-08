@@ -1,0 +1,10 @@
+{
+    "name": "Ponytail Pragmatic Extension",
+    "version": "1.0.0",
+    "rules": [
+        "AGENTS.md"
+    ],
+    "skills": [
+        "skills/"
+    ]
+}

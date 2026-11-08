@@ -1,0 +1,69 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isExaminer() {
+      return isAuthenticated() &&
+        request.auth.token.firebase.sign_in_provider == 'anonymous';
+    }
+
+    function isCandidate() {
+      return isAuthenticated() &&
+        request.auth.token.firebase.sign_in_provider == 'password';
+    }
+
+    // Categories collection
+    // Examiner creates and manages; Candidates read
+    match /categories/{categoryId} {
+      allow read: if isAuthenticated();
+      allow write: if isExaminer();
+    }
+
+    // Exams collection
+    // Examiner creates and deletes exams; Candidates read exams
+    // Candidates can only update activeSlots during slot claiming and freeing
+    match /exams/{examId} {
+      allow read: if isAuthenticated();
+      allow create, delete: if isExaminer();
+      allow update: if isExaminer() || (
+        isCandidate() &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['activeSlots'])
+      );
+
+      // Questions subcollection
+      // Examiner writes; Candidates read to take the exam
+      match /questions/{questionId} {
+        allow read: if isAuthenticated();
+        allow write: if isExaminer();
+      }
+    }
+
+    // Attempts collection
+    // Document ID is strictly `{examId}_{uid}` to enforce one attempt per candidate
+    match /attempts/{attemptId} {
+      // Examiner reads all attempts for live monitor and results
+      // Candidate can only read their own attempt
+      allow read: if isExaminer() || (
+        isCandidate() && resource.data.candidateId == request.auth.uid
+      );
+
+      // Candidate can create their own attempt document
+      allow create: if isCandidate() &&
+        request.resource.data.candidateId == request.auth.uid &&
+        attemptId == request.resource.data.examId + '_' + request.auth.uid;
+
+      // Candidate can update only their own attempt progress and status
+      allow update: if isCandidate() &&
+        resource.data.candidateId == request.auth.uid &&
+        request.resource.data.candidateId == request.auth.uid;
+
+      // Examiner can clean up attempts when an exam/category is deleted
+      allow delete: if isExaminer();
+    }
+  }
+}

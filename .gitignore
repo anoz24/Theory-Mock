@@ -1,0 +1,121 @@
+# ==============================================================================
+# Root .gitignore: Real-Time Driving Theory Mock Exam System
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Operating System Files
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# ------------------------------------------------------------------------------
+# IDEs and Editors
+# ------------------------------------------------------------------------------
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# ------------------------------------------------------------------------------
+# Flutter & Dart Build Outputs (Monorepo-wide)
+# ------------------------------------------------------------------------------
+**/build/
+**/.dart_tool/
+**/.pub/
+**/.pub-cache/
+**/coverage/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/flutter_*.png
+**/app.*.symbols
+**/app.*.map.json
+**/.widget_preview/
+**/doc/api/
+
+# ------------------------------------------------------------------------------
+# Android Build Artifacts & Local Caches
+# ------------------------------------------------------------------------------
+**/android/**/build/
+**/android/.gradle/
+**/android/local.properties
+**/android/captures/
+**/android/.cxx/
+**/android/app/.cxx/
+**/.gradle/
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+
+# ------------------------------------------------------------------------------
+# iOS & macOS Build Artifacts & Ephemeral Files
+# ------------------------------------------------------------------------------
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/profile
+**/ios/debug
+**/ios/release
+**/DerivedData/
+*.mode1v3
+*.mode2v3
+*.moved-aside
+*.pbxuser
+*.perspectivev3
+xcuserdata/
+
+# ------------------------------------------------------------------------------
+# Firebase Configs & Secrets (Per AGENTS.md: Never commit secrets)
+# ------------------------------------------------------------------------------
+**/google-services.json
+**/GoogleService-Info.plist
+**/firebase_options.dart
+
+# ------------------------------------------------------------------------------
+# Keystores & Signing Keys
+# ------------------------------------------------------------------------------
+*.keystore
+*.jks
+**/key.properties
+
+# ------------------------------------------------------------------------------
+# Environment Variables & Secrets
+# ------------------------------------------------------------------------------
+*.env
+*.env.*
+!.env.example
+secrets.*
+
+# ------------------------------------------------------------------------------
+# Temporary Files & Logs
+# ------------------------------------------------------------------------------
+*.log
+*.class
+*.pyc
+*.swp
+*~
+.history
+.buildlog/
+migrate_working_dir/
+
+docs
+.agents
+AGENTS.md
