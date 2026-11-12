@@ -40,6 +40,7 @@ dependencies:
   go_router: ^14.8.1
   intl: ^0.20.2
 
+  material_ui: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

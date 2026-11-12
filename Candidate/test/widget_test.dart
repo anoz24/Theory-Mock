@@ -1,7 +1,7 @@
 import 'package:candidate/core/theme/app_theme.dart';
 import 'package:candidate/features/auth/bloc/auth_bloc.dart';
 import 'package:candidate/features/auth/view/login_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
